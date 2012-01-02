@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= @item[:title] %> | TechyLinguist: Open Source Code &amp; Notes</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
+    <meta name="generator" content="nanoc 3.2.3">
+  </head>
+  <body>
+    <div id="main">
+      <div id="title-wrapper">
+        <h1><a href="/">TechyLinguist</a></h1>
+        <div id="tagline">Open Source Code &amp; Notes</div>
+      </div>
+      <%= yield %>
+    </div>
+    <div id="sidebar">
+      <h2><a href="/about">Who & What?</a></h2>
+    </div>
+  </body>
+</html>

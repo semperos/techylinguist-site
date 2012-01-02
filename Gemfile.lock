@@ -1,0 +1,26 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    adsf (1.0.1)
+      rack (>= 1.0.0)
+    coderay (1.0.5)
+    cri (2.0.2)
+    kramdown (0.13.4)
+    nanoc (3.2.3)
+      nanoc3 (>= 3.2.3)
+    nanoc3 (3.2.3)
+      cri (~> 2.0)
+    nokogiri (1.5.0-java)
+    rack (1.4.0)
+    rdiscount (1.6.8)
+
+PLATFORMS
+  java
+
+DEPENDENCIES
+  adsf
+  coderay
+  kramdown
+  nanoc
+  nokogiri
+  rdiscount
