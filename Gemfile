@@ -8,6 +8,7 @@ gem "adsf"
 gem "coderay"
 
 group :development do
+  gem "rake"
   gem "pry"
   gem "ruby-fsevent"
   gem "watchr"
