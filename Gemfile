@@ -6,3 +6,6 @@ gem "kramdown"
 gem "rdiscount"
 gem "adsf"
 gem "coderay"
+
+# development
+gem "pry"
