@@ -7,5 +7,9 @@ gem "rdiscount"
 gem "adsf"
 gem "coderay"
 
-# development
-gem "pry"
+group :development do
+  gem "pry"
+  gem "ruby-fsevent"
+  gem "watchr"
+end
+

@@ -6,16 +6,37 @@ GEM
     coderay (1.0.5)
     cri (2.0.2)
     kramdown (0.13.4)
+    method_source (0.7.0)
     nanoc (3.2.3)
       nanoc3 (>= 3.2.3)
     nanoc3 (3.2.3)
       cri (~> 2.0)
+    nokogiri (1.5.0)
     nokogiri (1.5.0-java)
+    pry (0.9.6)
+      coderay (>= 0.9.8)
+      method_source (>= 0.6.5)
+      ruby_parser (>= 2.0.5)
+      slop (~> 2.1.0)
+    pry (0.9.6-java)
+      coderay (>= 0.9.8)
+      method_source (>= 0.6.5)
+      ruby_parser (>= 2.0.5)
+      slop (~> 2.1.0)
+      spoon (>= 0.0.1)
     rack (1.4.0)
     rdiscount (1.6.8)
+    ruby-fsevent (0.2.1)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
+    sexp_processor (3.0.9)
+    slop (2.1.0)
+    spoon (0.0.1)
+    watchr (0.7)
 
 PLATFORMS
   java
+  ruby
 
 DEPENDENCIES
   adsf
@@ -23,4 +44,7 @@ DEPENDENCIES
   kramdown
   nanoc
   nokogiri
+  pry
   rdiscount
+  ruby-fsevent
+  watchr
