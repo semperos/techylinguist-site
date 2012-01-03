@@ -31,13 +31,15 @@ compile '*' do
     when 'basic'
       filter :rdiscount
     end
-    layout 'default'
+    filter :relativize_paths, :type => :html
     filter :colorize_syntax
+    layout 'default'
   else
     # use the full config by default
     filter :erb
     filter :kramdown, :auto_ids => false
     filter :colorize_syntax
+    filter :relativize_paths, :type => :html
     layout 'default'
   end
 end
