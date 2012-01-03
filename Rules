@@ -21,7 +21,8 @@ end
 compile '*' do
   if item.binary?
     # don’t filter binary items
-  else
+  elsif item[:override] == true
+    # borrowed from nanoc-site Rules
     filter :erb if item[:is_dynamic]
 
     case item[:markdown]
@@ -32,6 +33,12 @@ compile '*' do
     end
     layout 'default'
     filter :colorize_syntax
+  else
+    # use the full config by default
+    filter :erb
+    filter :kramdown, :auto_ids => false
+    filter :colorize_syntax
+    layout 'default'
   end
 end
 
