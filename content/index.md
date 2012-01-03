@@ -13,7 +13,6 @@ The current iteration of the site uses [nanoc](http://nanoc.stoneship.org) for s
 ## Posts ##
 
 <% @site.sorted_articles.each do |post| %>
- * [<%= post[:title] %>](<%= post.path %>)
-{:class="post-list-title"} 
+ * <%= post.human_post_date %> - [<%= post[:title] %>](<%= post.path %>)
 <% end %>
 
