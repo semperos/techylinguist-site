@@ -101,6 +101,10 @@ a:hover {
 }
 
 /****** Custom *******/
+li p,
+#main li p {
+    margin: 0;
+}
 #title-wrapper {
     color: #ababab;
     min-height: 6em;
