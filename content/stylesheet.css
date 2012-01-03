@@ -115,6 +115,7 @@ a:hover {
 
 #tagline {
     font-style: italic;
+    margin-top: 0.2em;
 }
 
 #sidebar {
@@ -126,13 +127,79 @@ a:hover {
     border-bottom: 1px solid #CCC;
 }
 
+/** Code Highlighting **/
 code {
     font-family: monospace;
 }
 
 pre {
     padding: 10px;
-    background-color: #efefef;
-    border: 1px solid #ababab;
-    overflow: scroll
+    color: #FFF;
+    background-color: #2B2B2B;
+    border: 1px solid #CCC;
+    overflow: scroll;
+}
+
+pre * {
+    font-family: monospace;
+}
+
+pre .log-create {
+    font-weight: bold;
+    color: #4a0;
+}
+
+pre .log-update {
+    font-weight: bold;
+    color: #cb0;
+}
+
+pre .comment {
+    color: #ba9357;
+}
+
+pre .key {
+    color: #cc7833; /* #6a0; */
+}
+
+pre .string,
+pre .value {
+    color: #a5c261; /* 772; */
+}
+
+pre .constant,
+pre .class,
+pre .symbol {
+    color: #6c9bbd; /* c60; */
+}
+
+pre .function {
+    color: #ffc66d; /* e21; */
+}
+
+pre .instance-variable,
+pre .local_variable {
+    color: #6a0;
+}
+
+pre .reserved,
+pre .predefined,
+pre .predefined-constant {
+    color: #d0d0ff; /* 09c; */
+}
+
+pre .tag,
+pre .keyword {
+    color: #cc7833;
+}
+
+pre .integer,
+pre .attribute_name {
+    color: #a5c261; /* a50; */
+}
+
+pre .m {
+    padding: 0 0.1em;
+    background: #555;
+    color: #fff;
 }
