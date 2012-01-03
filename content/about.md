@@ -4,4 +4,3 @@ My name is <%= @item[:author] %> (semperos around the Internet). I write open so
 
 This site is a repository for code and notes accrued during my work with open source software. If you have any comments or requests, hit me up [@semperos](http://twitter.com/semperos) on Twitter.
 
-<% binding.pry %>
