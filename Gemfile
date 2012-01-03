@@ -10,7 +10,10 @@ gem "coderay"
 group :development do
   gem "rake"
   gem "pry"
-  gem "ruby-fsevent"
   gem "watchr"
 end
 
+case RUBY_PLATFORM
+when /darwin/
+  gem "ruby-fsevent"
+end
