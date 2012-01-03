@@ -120,3 +120,19 @@ a:hover {
 #sidebar {
     margin-top: 6em;
 }
+
+#sidebar h2 {
+    line-height: 25px;
+    border-bottom: 1px solid #CCC;
+}
+
+code {
+    font-family: monospace;
+}
+
+pre {
+    padding: 10px;
+    background-color: #efefef;
+    border: 1px solid #ababab;
+    overflow: scroll
+}
