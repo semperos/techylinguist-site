@@ -9,3 +9,11 @@ git clone https://github.com/semperos/techylinguist-site.git
 ~~~~
 
 The current iteration of the site uses [nanoc](http://nanoc.stoneship.org) for static site generation.
+
+## Posts ##
+
+<% @site.sorted_articles.each do |post| %>
+ * [<%= post[:title] %>](<%= post.path %>)
+{:class="post-list-title"} 
+<% end %>
+
