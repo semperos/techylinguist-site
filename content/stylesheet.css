@@ -101,6 +101,11 @@ a:hover {
 }
 
 /****** Custom *******/
+li ul,
+#main li ul {
+    margin-top: 0;
+    margin-bottom: 0.2em;
+}
 li p,
 #main li p {
     margin: 0;
