@@ -1,6 +1,6 @@
 ## Clojure Development Environment ##
 
-There are only two important things to remember about your Clojure development environment:
+There are only two important things to remember about setting up your Clojure development environment:
 
  1. Don't let it get in the way of learning Clojure.
  2. Don't let it get in the way of learning Clojure.
