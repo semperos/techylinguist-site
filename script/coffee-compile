@@ -1,0 +1,3 @@
+#!/bin/bash
+
+coffee -bc --output content/javascripts content/coffee/*.coffee
