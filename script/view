@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Site starting on localhost:3003"
+echo ""
+bundle exec nanoc view --port 3003

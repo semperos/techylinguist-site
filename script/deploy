@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "NOTE: You must have a 'deploy' remote configured for this repo."
+read -p "Press [ENTER] if you wish to continue..."
+
+git push origin master && git push deploy master

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./script/coffee-compile
+bundle exec nanoc co
