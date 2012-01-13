@@ -14,8 +14,59 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-compile '/stylesheet/' do
+# Ignore CoffeeScript files
+compile '/coffee/*/' do
+  # nothing
+end
+
+route '/coffee/*/' do
+  # nothing
+end
+
+compile '/stylesheets/*/' do
   # don’t filter or layout
+end
+
+route '/stylesheets/*/' do
+  this_dir = ((item.identifier.chop).rpartition "/")[0]
+  this_f = (item[:filename].rpartition "/")[2]
+  this_dir + "/" + this_f
+end
+
+compile '/javascripts/*/' do
+  # nothing
+end
+
+route '/javascripts/*/' do
+  this_dir = ((item.identifier.chop).rpartition "/")[0]
+  this_f = (item[:filename].rpartition "/")[2]
+  this_dir + "/" + this_f
+end
+
+compile '/posts/*' do
+  if item.binary?
+    # don’t filter binary items
+  elsif item[:override] == true
+    # borrowed from nanoc-site Rules
+    filter :erb if item[:is_dynamic]
+
+    case item[:markdown]
+    when 'advanced'
+      filter :kramdown, :auto_ids => false
+    when 'basic'
+      filter :rdiscount
+    end
+    filter :relativize_paths, :type => :html
+    filter :colorize_syntax
+    layout 'post'
+  else
+    # use the full config by default
+    filter :erb
+    filter :kramdown, :auto_ids => false
+    filter :colorize_syntax
+    filter :relativize_paths, :type => :html
+    layout 'post'
+  end
 end
 
 compile '*' do
@@ -42,10 +93,6 @@ compile '*' do
     filter :relativize_paths, :type => :html
     layout 'default'
   end
-end
-
-route '/stylesheet/' do
-  '/style.css'
 end
 
 route '*' do
