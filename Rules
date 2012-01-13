@@ -43,7 +43,7 @@ route '/javascripts/*/' do
   this_dir + "/" + this_f
 end
 
-compile '/posts/*' do
+compile '/posts/*/' do
   if item.binary?
     # don’t filter binary items
   elsif item[:override] == true
