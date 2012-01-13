@@ -213,3 +213,8 @@ pre .m {
     background: #555;
     color: #fff;
 }
+
+/** Disqus Theming **/
+#disqus-wrapper ul li {
+    list-style: none;
+}
