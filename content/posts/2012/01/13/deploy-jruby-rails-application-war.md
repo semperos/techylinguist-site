@@ -8,6 +8,12 @@ There are several ways to deploy a JRuby on Rails application. This post focuses
 
 This generally means an installation of Tomcat, JBoss or some other servlet container. For this reason, this post will focus on preparing your JRuby on Rails app for production mode, generating a `*.war` file and deploying that to a servlet container.
 
+At the end, you will have a Bash script which can you put in `RAILS_ROOT/script` and run like this from the root of your Rails app:
+
+~~~~
+./script/deploy
+~~~~
+
 ### Deployment Choices ###
 
 The most common methods for deploying a JRuby on Rails app that come to mind are:
@@ -211,6 +217,12 @@ Before we compile our JRuby files again, it never hurts to delete the old `*.cla
 
 ~~~~
 find . -type f -name *.class -print0 | xargs -0 rm
+~~~~
+
+We should also delete the `tmp` and `public/assets` folders to avoid any weird cache conflicts across compilations:
+
+~~~~
+rm -rf tmp public/assets
 ~~~~
 
 ##### 6. Generate the WAR file #####
