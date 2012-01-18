@@ -1,3 +1,14 @@
 title: Deploy a JRuby on Rails Application as a WAR File
 kind: article
 created_at: 1326492825
+categories:
+  - Ruby
+  - JRuby
+  - Deployment
+  - Tomcat
+  - WAR
+  - Rake
+  - Rails
+  - Rail 3.1
+  - Asset Pipeline
+  - Asset Precompilation

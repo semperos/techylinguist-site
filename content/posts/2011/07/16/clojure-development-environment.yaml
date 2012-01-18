@@ -1,3 +1,10 @@
 title: Clojure Development Environment
 kind: article
 created_at: 1310870182
+categories:
+  - Clojure
+  - Development Environment
+  - Emacs
+  - Leiningen
+  - REPL
+  - Jar
