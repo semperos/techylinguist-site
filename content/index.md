@@ -2,7 +2,7 @@
 
 This blog focuses on code (mostly Clojure and Ruby) and notes (mostly ramblings) that I want to keep track of as I hack on open source software.
 
-If you want a local copy of this site, you can clone [the git repo on Github](https://github.com/semperos/techylinguist-site). Posts are located under the `/content` folder:
+If you want a local copy of this site, you can clone [the git repo on Github](https://github.com/semperos/techylinguist-site). Posts are located under the `/content` folder, my own customizations under the `/lib` folder:
 
 ~~~~
 git clone https://github.com/semperos/techylinguist-site.git
