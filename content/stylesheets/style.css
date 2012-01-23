@@ -153,6 +153,30 @@ li p,
 }
 
 /** Code Highlighting **/
+p code,
+li code,
+div code {
+    background-color: #2B2B2B;
+    color: white;
+    border-radius: 5px;
+    padding: 1px 5px;
+    -moz-border-radius: 5px;
+}
+
+kbd {
+    padding: 2px 4px;
+    white-space: nowrap;
+    color: black;
+    background: #EEE;
+    border-width: 1px 3px 3px 1px;
+    border-style: solid;
+    border-color: #CCC #AAA #888 #BBB;
+}
+
+pre code {
+    background-color: #2B2B2B;
+}
+
 code {
     font-family: monospace;
 }
