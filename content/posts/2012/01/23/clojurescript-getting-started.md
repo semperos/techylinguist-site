@@ -2,20 +2,48 @@
 
 **NOTE: This is a WORK IN PROGRESS**
 
- * ClojureScript jar available on central: `[org.clojure/clojurescript "0.0-927"]`
- * Organize dirs like this:
-     * `src/clj/project_name/...`
-     * `src/cljs/project_name/...`
-     * `src/cljs-macros/project_name/...`
- * Create a compile namespace in the `clj` dir for easy compilation. See code below.
- * Use [instructions on ClojureScript One wiki about having both a Clojure and ClojureScript REPL open in Emacs](https://github.com/brentonashworth/one/wiki/Emacs). I prefer keeping my Clojure swank/slime setup, and to let ClojureScript live in the `*shell*` buffer.
- * Use <kbd>C-c x</kbd> for top-level form eval and <kbd>C-c e</kbd> for "form under point" eval.
- * Make sure to evalute `(ns)` form to get your ClojureScript REPL in the namespace you're working in.
- * Get yourself a copy of `clj->js`. See code below.
+ClojureScript brings Clojure's reach to one more platform: JavaScript. On top of all the power of Clojure's language specification, ClojureScript also leverages the power of the Google Closure compiler, providing convenient mechanisms for coding to its standard and compiling your ClojureScript with its advanced settings.
 
-### ClojureScript Compilation ###
+This post provides an introduction to setting up your ClojureScript environment and becoming acquainted with a few of the idiosyncracies of the JavaScript platform that surface in ClojureScript code.
 
-Here is an example `compile.clj` file that you can load/evaluate to automatically have your ClojureScript compiled:
+### Create a Project ###
+
+You should use [Leiningen](https://github.com/technomancy/leiningen) to start a new project. See [my earlier instructions on this topic](/posts/2011/07/16/clojure-development-environment/).
+
+### Get ClojureScript ###
+
+As of this writing, ClojureScript is now available via Maven's central repository, marking a drastic shift in usability since its initial release. Add the following snippet to your `:dependencies` in your `project.clj`:
+
+~~~~
+#!clojure
+[org.clojure/clojurescript "0.0-927"]
+~~~~
+
+### Organize your Project ###
+
+By default, Leiningen creates a directory structure that includes a `src/my_project/...` directory. You should setup your folders to include one more layer of hierarchy for language, in this case `clj` versus `cljs` (as well as a folder for `cljs-macros`). For example:
+
+~~~~
+my-project
+  - .gitignore
+  - README
+  - project.clj
+  - src
+    `-- clj
+      `-- my_project
+    `-- cljs
+      `-- my_project
+    `-- cljs-macros
+      `-- my_project
+~~~~
+
+Make sure you edit your `project.clj` by adding a `:source-path` entry with a value of `src/clj`.
+
+### Compiling your ClojureScript ###
+
+ClojureScript won't do you much good unless you compile it into JavaScript. As explained on the ClojureScript wiki, when developing you application, you should use the bare-bones compilation options provided by ClojureScript.
+
+For the sake of convenience, it makes sense to create a namespace dedicated to compiling your project's ClojureScript files. Here is some example code that would accomplish this in a development environment:
 
 ~~~~
 #!clojure
@@ -34,15 +62,33 @@ Here is an example `compile.clj` file that you can load/evaluate to automaticall
 (build-cljs)
 ~~~~
 
-This is a "development mode" build, since I've commented out the `:optimizations` option to `build`.
+Save this code in a file at `src/clj/my_project/compile.clj`. When working at the REPL, you can compile this whole file to have your ClojureScript compiled automatically.
 
-### ClojureScript-to-JavaScript Transformations ###
+There are ways to have your code compile automatically, but I prefer to manually compile and even occassionally delete all compiled files, to ensure that I'm not building my UI against cached or stale versions of my ClojureScript.
 
-While the pure ClojureScript ecosystem is still relatively immature, you'll still be depending on external JavaScript libraries for many "common" tasks. Or, like me, you've put a lot of time into understanding things like jQuery UI and want to leverage that experience in ClojureScript where needed.
+### Clojure and ClojureScript Together ###
 
-API's like jQuery UI often require that you pass in an anonymous object as a parameter to a function (e.g., for passing in configuration options or callbacks to widgets). However, when you use a hash-map in ClojureScript, you're not creating an anonymous object; you're creating a `cljs.core.ObjMap` instance.
+These instructions are specific to Emacs.
 
-The following takes raw ClojureScript types (including instances of `ObjMap`) and recursively descends through them, creating a regular JavaScript objct for the purposes of interop:
+In Emacs, folks code Clojure with either an open inferior lisp program or a Slime REPL connected via Swank. However, what do you do when you want to code Clojure and ClojureScript simultaneously?
+
+For those who have read through the documentation for ClojureScript, you know that it first requires that you start a Clojure REPL. The developers of ClojureScript One [have documented a technique](https://github.com/brentonashworth/one/wiki/Emacs) to use a `*shell*` buffer to house a second REPL, and have provided a set of E-lisp functions that make this possible.
+
+TODO: Finish section with details of how to use their code.
+
+Use <kbd>C-c x</kbd> for top-level form eval and <kbd>C-c e</kbd> for "form under point" eval.
+
+### Coding Away ###
+
+Now that you have the two most important keyboard shortcuts for interacting between Emacs buffers and your shell-based REPL, it's time to start coding.
+
+If you want to code within the "context" of a target namespace, just make sure to evalute the `(ns)` form at the top of the file.
+
+### JavaScript Interop ###
+
+Just as with Clojure on the JVM, there are aspects of the underlying system that invariably affect Clojure's semantics. JavaScript is no exception.
+
+ * Get yourself a copy of `clj->js`. See code below.
 
 ~~~~
 #!clojure
