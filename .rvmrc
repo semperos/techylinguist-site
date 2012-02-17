@@ -1,1 +1,1 @@
-rvm use 1.9.2@nanoc_techy --create
+rvm use 1.9.3@nanoc_techy --create
