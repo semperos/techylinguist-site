@@ -74,7 +74,17 @@ In Emacs, folks code Clojure with either an open inferior lisp program or a Slim
 
 For those who have read through the documentation for ClojureScript, you know that it first requires that you start a Clojure REPL. The developers of ClojureScript One [have documented a technique](https://github.com/brentonashworth/one/wiki/Emacs) to use a `*shell*` buffer to house a second REPL, and have provided a set of E-lisp functions that make this possible.
 
-TODO: Finish section with details of how to use their code.
+ * Add functions to your Emacs config
+ * Run <kdb>M-x shell</kbd>
+ * In the `*shell*` buffer, run `lein repl`
+ * Evaluate the code below to start a ClojureScript REPL.
+
+~~~~
+#!clojure
+(require '[cljs.repl :as repl])
+(require '[cljs.repl.rhino :as rhino])
+(repl/repl (rhino/repl-env))
+~~~~
 
 Use <kbd>C-c x</kbd> for top-level form eval and <kbd>C-c e</kbd> for "form under point" eval.
 
