@@ -1,8 +1,6 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    adsf (1.0.1)
-      rack (>= 1.0.0)
     coderay (1.0.5)
     cri (2.0.2)
     kramdown (0.13.4)
@@ -24,7 +22,6 @@ GEM
       ruby_parser (>= 2.0.5)
       slop (~> 2.1.0)
       spoon (>= 0.0.1)
-    rack (1.4.0)
     rake (0.9.2)
     rdiscount (1.6.8)
     ruby-fsevent (0.2.1)
@@ -40,7 +37,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  adsf
   coderay
   kramdown
   nanoc
