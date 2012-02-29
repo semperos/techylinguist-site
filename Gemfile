@@ -10,6 +10,7 @@ group :development do
   gem "rake"
   gem "pry"
   gem "watchr"
+  gem "adsf"
 end
 
 case RUBY_PLATFORM
