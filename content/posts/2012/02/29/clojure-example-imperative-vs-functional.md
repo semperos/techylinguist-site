@@ -81,7 +81,7 @@ For each item, I determine if it should be chosen. If it should be, then I updat
  2. Decrementing the number needed
  3. Decrementing the number left
 
-If the item is not to be chosen, the only action that needs to be taken is decrementing the total number of items. At the end, my `reduce` form returns a map like `{:query "apple banana orange" :num-left 0 :num-needed 0}`. In the above code, I then simply get the `:query` value and call `clojure.string/join` on it for my final query string that gets passed to my web application.
+If the item is not to be chosen, the only action that needs to be taken is decrementing the total number of items. At the end, my `reduce` form returns a map like `{:query ["apple" "banana" "orange"] :num-left 0 :num-needed 0}`. In the above code, I then simply get the `:query` value and call `clojure.string/join` on it for my final query string that gets passed to my web application.
 
 I think the code speaks for itself. The functional variant looks cleaner and its intent is easier to follow. We're only keeping track of iterations to do the math for choosing an element randomly based on the probability of its being needed, not because we're manually looping over a collection.
 
