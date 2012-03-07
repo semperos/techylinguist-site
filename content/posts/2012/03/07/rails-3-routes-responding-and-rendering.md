@@ -12,7 +12,7 @@ get "dev/routing/defaults" => 'dev_tools#test_routing_with_defaults', :defaults 
 get "dev/routing/respond-with" => 'dev_tools#test_routing_respond_with'
 ~~~~
 
-From my `dev_tools.controller.rb` file:
+From my `dev_tools_controller.rb` file:
 
 ~~~~
 #!ruby
