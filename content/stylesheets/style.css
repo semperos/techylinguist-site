@@ -154,8 +154,7 @@ li p,
 
 /** Code Highlighting **/
 p code,
-li code,
-div code {
+li code {
     background-color: #2B2B2B;
     color: white;
     border-radius: 5px;
