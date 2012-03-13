@@ -2,7 +2,7 @@
 
 **Work in Progress**
 
-In my opinion, once you get comfortable with general Lisp-ness and Java-ness, as well as the beginnings of what functional programming is all about, you really only need about 35 functions (or pairs of functions) to get rolling with Clojure, plus the host interop syntax.
+In my opinion, once you get comfortable with general Lisp-ness and Java-ness, as well as the beginnings of what functional programming is all about, you really only need less than 40 functions (or pairs of functions) to get rolling with Clojure, plus the host interop syntax.
 
 These are they, with brief, over-simplified explanations and examples.
 
@@ -204,6 +204,7 @@ Read comparisons from left to right, just like you'd say them in English:
  * filter - Return all elements in a seq that return true for a given predicate
  * remove - Remove all elements in a seq that return true for a given predicate
  * map - Take a function and a collection, call that function on each element in the collection, replacing the value of the element with the return value of the function
+ * reduce - Take a function, an optional starting value and a collection, then apply the function to the first two things in the collection, then take that result and call the function with that result and the next item, etc., to the end of the collection, returning the final return value
  * some - Return true if any elements in the collection return true for the given predicate
  * every? - Return true if all elements in the collection return true for the given predicate
  * doall - Realize a lazy sequence
