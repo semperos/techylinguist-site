@@ -173,10 +173,10 @@ Use `when` in situations where you would have otherwise written `if` that only n
 
 ### Comparisons ###
 
- * = 
- * >, >=
- * <, <=
- * pos? / neg?
+ * `=` 
+ * `>`, `>=`
+ * `<`, `<=`
+ * `pos?` / `neg?`
 
 Read comparisons from left to right, just like you'd say them in English:
 
