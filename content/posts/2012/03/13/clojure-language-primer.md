@@ -211,7 +211,7 @@ Read comparisons from left to right, just like you'd say them in English:
 
 ### Math and Numbers ###
 
- * + - * /
+ * `+`, `-`, `*`, `/`
  * mod - Returns the remainder (modulus)
  * int - Cast to an Integer, or round down
  * inc / dec - Increment/decrement by one
