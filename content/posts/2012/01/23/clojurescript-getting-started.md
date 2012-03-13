@@ -1,6 +1,6 @@
 ## ClojureScript: Getting Started ##
 
-**NOTE: This is a WORK IN PROGRESS**
+**NOTE: This is a WORK IN PROGRESS, and I suggest you just use cljs-build at this point.**
 
 ClojureScript brings Clojure's reach to one more platform: JavaScript. On top of all the power of Clojure's language specification, ClojureScript also leverages the power of the Google Closure compiler, providing convenient mechanisms for coding to its standard and compiling your ClojureScript with its advanced settings.
 
