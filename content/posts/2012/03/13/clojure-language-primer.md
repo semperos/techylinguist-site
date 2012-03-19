@@ -199,15 +199,144 @@ Read comparisons from left to right, just like you'd say them in English:
 
 ### Collections / Sequences ###
 
- * for - Clojure's sequence comprehension (**not** a for-loop)
- * first / rest - The first item in a sequence, the rest of the items in a sequence after first
- * filter - Return all elements in a seq that return true for a given predicate
- * remove - Remove all elements in a seq that return true for a given predicate
- * map - Take a function and a collection, call that function on each element in the collection, replacing the value of the element with the return value of the function
- * reduce - Take a function, an optional starting value and a collection, then apply the function to the first two things in the collection, then take that result and call the function with that result and the next item, etc., to the end of the collection, returning the final return value
- * some - Return true if any elements in the collection return true for the given predicate
- * every? - Return true if all elements in the collection return true for the given predicate
- * doall - Realize a lazy sequence
+A word to the wise: many of these functions perform similar tasks and sometimes there's more than one way to accomplish the same task. That said, you'll discover which functions fit your brain and your problems better as you practice.
+
+#### for ####
+
+There is no for "loop" in Clojure, but there is the `for` comprehension. It takes a sequence of things, lets you do something to each thing in order, and then returns a lazy sequence of new things.
+
+~~~~
+#!clojure
+(def numbers [1 2 3 4 5])
+
+(for [number numbers]
+  (* number 2))
+;=> (2 4 6 8 10)
+~~~~
+
+You can read it like this: "For each `number` in `numbers`, multiply that `number` by two." Each of those multiplications are kept along the way, forming a new sequence. The `for` comprehension allows for several more paramters inside of that `[number numbers]` binding, but this is the basic usage.
+
+On top of it all, it's a *lazy* sequence, which means Clojure won't compute the items until they're needed. This may seem like overkill for simple addition, but if you're dealing with big data structure, long-running processes or processes that consume a lot of memory, lazy evaluation makes what would otherwise be impossible calculations possible.
+
+#### first / rest ####
+
+This is the classic `car` and `cdr` in traditional Lisp.
+
+~~~~
+#!clojure
+(def foo [1 2 3 4 5])
+
+(first foo)
+;=> 1
+
+(rest foo)
+;=> (2 3 4 5)
+~~~~
+
+You may notice that Clojure has a `next` function that behaves very similarly to `rest`, but look more closely:
+
+~~~~
+#!clojure
+;; This is the same
+(next foo)
+;=> (2 3 4 5)
+
+;; This is different
+(rest (rest (rest (rest (rest foo)))))
+;=> ()
+
+(next (next (next (next (next foo)))))
+;=> nil
+~~~~
+
+#### filter / remove ####
+
+Once you've got yourself a collection of things, you need an easy way to express what you'd like to keep, or what you'd like to remove, from that collection. The `filter` function lets you specify what you want to keep, `remove` what you want to `remove`.
+
+~~~~
+#!clojure
+(def foo [1 2 3 4 5])
+
+(filter even? foo)
+;=> (2 4)
+
+(remove even? foo)
+;=> (1 3 5)
+~~~~
+
+#### map ####
+
+The `map` function is like the `for` comprehension, but less complex. It just takes a function and a collection, applying the function to each item in the collection and returning a new resulting sequence.
+
+~~~~
+#!clojure
+(def foo [1 2 3 4 5])
+(defn times-two [n] (* n 2))
+
+(map times-two foo)
+;=> (2 4 6 8 10)
+~~~~
+
+#### reduce ####
+
+The `reduce` function is a power-house. Like the `map` function, it takes a function and a collection, but the story's a little more complex.
+
+Unlike `map`, the function you pass to `reduce` takes two parameters. The first is a running result that you keep track of as you work through the collection, and the second is the next item in the collection. Let's take a simple example:
+
+~~~~
+#!clojure
+(reduce + [2 3 4 5 6])
+~~~~
+
+Here's how this works, step-by-step:
+
+ 1. Take `+` and pass in the first two items in the list, `2` and `3`. Step complete.
+ 2. Take `+` again and pass in the result from the last operation, `5` (adding 2 plus 3), then pass in the next item, `4`. Step complete.
+ 3. Take `+` again and pass in the previous result `9` and the next item, `5`. Step complete.
+ 
+This keeps going until the end of the collection, at which point the running result you've been passing as the first parameter to `+` is returned as the result of the entire expression. So in this example, you're just adding numbers.
+
+The real power comes in when you pass `reduce` a default starting value for the running result, in which case you can use anything you want. Here's `reduce` over the same vector, but with a lot more going on:
+
+~~~~
+#!clojure
+(reduce (fn [result item]
+          (if (even? item)
+            (update-in result [:evens] conj item)
+            (update-in result [:odds] conj item)))
+        {:evens [], :odds []}
+        [2 3 4 5 6])
+;=> {:evens [2 4 6], :odds [3 5]}
+~~~~
+
+#### some / every? ####
+
+The `some` function takes a function and a collection, returning `true` if the function returns true for any item in the collection.
+
+It's also the idiomatic way to ask whether a vector/list contains an item:
+
+~~~~
+#!clojure
+(some even? [1 2 3 4 5])
+;=> true
+
+(some even? [1 3 5])
+;=> nil
+
+(some #{:foo} [:foo :bar :baz])
+;=> :foo
+
+(some #{:wowza} [:foo :bar :baz])
+;=> nil
+~~~~
+
+Note the use of a set `#{}` to determine if an item is in the vector. In the example above, the return of `:foo` is truthy, so when used in a conditional will behave like `true`.
+
+The `every?` function works just like `some`, except it will only return truthy if every item matches, not just one.
+
+#### doall ####
+
+This one is less common, but good to know about when you run into issues with Clojure's default laziness. If at any point you need to *force* Clojure to realize a lazy sequence, you can do so by passing it to `doall`.
 
 ### Math and Numbers ###
 
@@ -216,11 +345,35 @@ Read comparisons from left to right, just like you'd say them in English:
  * int - Cast to an Integer, or round down
  * inc / dec - Increment/decrement by one
  
-
+These work as expected. The basic arithmetic functions take a variable number of parameters, so `(+ 2 3 4 5 6 7 8)` is just fine.
+ 
 ### Strings and Regular Expressions ###
 
- * str - Both .toString and for concatenating strings
- * re-find - Returns matches against a regular expression in a target string
+#### str ####
+
+This acts both like `.toString()` and, when passed multiple parameters, will concatenate:
+
+~~~~
+#!clojure
+(str 4)
+;=> "4"
+
+(str "foo" " bar" " baz")
+;=> "foo bar baz"
+~~~~
+
+#### re-find ####
+
+Clojure has several regular expression functions, and even a literal regular expression syntax. This find returns what it finds in a given string.
+
+~~~~
+#!clojure
+(re-find #"t{2}" "latte")
+;=> "tt"
+
+(re-find #"t{2}(e)" "latte")
+;=> ["tte" "e"]
+~~~~
 
 ### Side-Effects ###
 
